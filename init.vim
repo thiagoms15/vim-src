@@ -4,6 +4,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'roxma/nvim-completion-manager'
 Plug 'w0rp/ale'
@@ -19,6 +20,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'APZelos/blamer.nvim'
 Plug 'voldikss/vim-floaterm'
+"Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
 syntax on
@@ -75,7 +77,7 @@ let mapleader="\<space>"
 nnoremap <leader>; A;<esc>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
-nnoremap <C-s> :w<cr>
+nnoremap <c-s> :w<cr>
 
 map <C-b> :NERDTreeToggle<cr>
 nnoremap <leader>. :CtrlPTag<cr>
@@ -98,6 +100,8 @@ let g:airline_right_sep = ''
 " Switch to your current theme
 let g:airline_theme = 'onedark'
 
+let g:airline#extensions#tabline#enabled = 1
+
 " Always show tabs
 "set showtabline=2
 
@@ -105,3 +109,12 @@ nnoremap   <silent>   <C-t>   :FloatermToggle<CR>
 tnoremap   <silent>   <C-t>   <C-\><C-n>:FloatermToggle<CR>
 
 highlight! link NERDTreeFlags NERDTreeDir
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" To Play Vim be good type in a empty file:
+" :VimBeGood
