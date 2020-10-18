@@ -1,12 +1,3 @@
-Vim config files
-
-sudo apt install neovim
-sudo apt install silversearcher-ag
-sudo apt install ccls
-
-C++
-:CocConfig
-
 {
     "languageserver": {
         "ccls": {
