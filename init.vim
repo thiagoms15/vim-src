@@ -65,7 +65,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 colorscheme gruvbox
 set background=dark
 
-set mouse=a
+"set mouse=a
 
 set inccommand=split
 set clipboard=unnamedplus

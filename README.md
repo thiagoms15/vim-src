@@ -1,12 +1,24 @@
-Vim config files
+# Vim config files
 
+## 1 - Install pre-depedencies by `apt`
+
+```
 sudo apt install neovim
 sudo apt install silversearcher-ag
 sudo apt install ccls
+```
 
-C++
+## Config Coc to use c++
+
+### 1 - Execute the following command:
+
+```
 :CocConfig
+```
 
+### 2 - Paste the following code:
+
+```
 {
     "languageserver": {
         "ccls": {
@@ -32,3 +44,4 @@ C++
         }
     }
 }
+```
