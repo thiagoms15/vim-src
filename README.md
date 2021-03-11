@@ -1,14 +1,38 @@
 # Vim config files
 
-## 1 - Install pre-depedencies by `apt`
+## Setup environment
+
+### 1 - Install pre-depedencies by `apt`
 
 ```
 sudo apt install neovim
 sudo apt install silversearcher-ag
 sudo apt install ccls
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt-get install -y nodejs
 ```
 
-## Config Coc to use c++
+### 1.1 Optional
+
+```
+sudo apt install bear
+pip install cpplint
+```
+
+To generate compile_commands.json
+```
+$ bear make
+```
+
+More abotut .clang-format
+```
+https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+To disable for a line use `// clang-format off`
+BasedOnStyle: Google # https://google.github.io/styleguide/cppguide.html
+IndentPPDirectives: BeforeHash
+```
+
+## Configure Coc to use c++ with ccls
 
 ### 1 - Execute the following command:
 

@@ -1,21 +1,15 @@
 call plug#begin()
 Plug 'morhetz/gruvbox'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
-Plug 'roxma/nvim-completion-manager'
 Plug 'w0rp/ale'
-Plug 'cohama/lexima.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kien/ctrlp.vim'
-Plug 'preservim/tagbar'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'APZelos/blamer.nvim'
@@ -77,20 +71,15 @@ set encoding=UTF-8
 let mapleader="\<space>"
 
 nnoremap <leader>; A;<esc>
-nnoremap <c-p> :Files<cr>
+"nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
 nnoremap <c-s> :w<cr>
 
 map <C-b> :NERDTreeToggle<cr>
-nnoremap <leader>. :CtrlPTag<cr>
-nnoremap <silent> <leader>b :TagbarToggle<CR>
 
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
-
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
 let g:blamer_enabled = 1
 
