@@ -1,4 +1,5 @@
-call plug#begin()                                                                                                                                                                                                                            Plug 'morhetz/gruvbox'
+call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
