@@ -1,12 +1,10 @@
-call plug#begin()
-Plug 'morhetz/gruvbox'
+call plug#begin()                                                                                                                                                                                                                            Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'w0rp/ale'
-Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -17,6 +15,13 @@ Plug 'voldikss/vim-floaterm'
 "Plug 'ThePrimeagen/vim-be-good'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mg979/vim-visual-multi'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nathanalderson/yang.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'dominikduda/vim_current_word'
+Plug 'kamykn/spelunker.vim'
 call plug#end()
 
 syntax on
@@ -28,8 +33,8 @@ set relativenumber
 set nohlsearch
 set hidden
 set noerrorbells
-set tabstop=2 softtabstop=2
-set shiftwidth=2
+set tabstop=4 softtabstop=4
+set shiftwidth=4
 set expandtab
 set smartindent
 set nu
@@ -70,9 +75,24 @@ set encoding=UTF-8
 
 let mapleader="\<space>"
 
+"call fzf#run({ 'source': 'ls' })
+"call fzf#run(fzf#wrap({ 'source': 'ls' }))
+"call fzf#run(fzf#vim#with_preview(fzf#wrap({ 'source': 'ls' })))
+"
+"" See how these decorators "decorate" (or "extend") the dictionary
+"echo fzf#wrap({ 'source': 'ls' })
+"echo fzf#vim#with_preview(fzf#wrap({ 'source': 'ls' }))
+
+"let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --no-index --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({ 'dir': systemlist('git rev-parse --show-toplevel')[0] }), <bang>0)
+
 nnoremap <leader>; A;<esc>
 "nnoremap <c-p> :Files<cr>
-nnoremap <c-f> :Ag<space>
+"nnoremap <c-f> :Ag<space>
+"nnoremap <c-f> :GGrep<space>
 nnoremap <c-s> :w<cr>
 
 map <C-b> :NERDTreeToggle<cr>
@@ -101,11 +121,8 @@ tnoremap   <silent>   <C-t>   <C-\><C-n>:FloatermToggle<CR>
 
 highlight! link NERDTreeFlags NERDTreeDir
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" To Play Vim be good type in a empty file:
-" :VimBeGood
+" Using lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
