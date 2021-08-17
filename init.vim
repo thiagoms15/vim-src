@@ -23,6 +23,7 @@ Plug 'nathanalderson/yang.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'dominikduda/vim_current_word'
 Plug 'kamykn/spelunker.vim'
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 syntax on
