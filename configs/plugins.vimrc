@@ -24,4 +24,5 @@ Plug 'Yggdroot/indentLine'
 Plug 'dominikduda/vim_current_word'
 Plug 'kamykn/spelunker.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'vimwiki/vimwiki'
 call plug#end()

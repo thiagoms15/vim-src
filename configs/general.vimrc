@@ -34,17 +34,14 @@ set updatetime=50
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-colorscheme gruvbox
-set background=dark
-
-"set mouse=a
-
 set inccommand=split
 set clipboard=unnamedplus
 
 set encoding=UTF-8
 
-let mapleader="\<space>"
+" Theme
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+colorscheme gruvbox
+set background=dark
