@@ -1,0 +1,5 @@
+require('general')
+require('plugins')
+require('mapping')
+require('telescope')
+require('lsp')

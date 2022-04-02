@@ -1,2 +1,4 @@
 plugged
-autoload/plug.vim.old
+autoload/
+pack/
+plugin/
