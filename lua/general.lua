@@ -49,9 +49,14 @@ set.updatetime = 50
 set.colorcolumn = '80'
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 
-vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme nordfox')
 set.background = 'dark'
 
 set.inccommand = 'split'
 vim.cmd('set clipboard+=unnamedplus')
+
+-- airline
+vim.cmd('let g:airline#extensions#tabline#enabled = 1')
+vim.cmd('let g:airline_powerline_fonts = 1')
 

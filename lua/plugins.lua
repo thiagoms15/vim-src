@@ -3,6 +3,7 @@ return require('packer').startup(function()
 
   -- themes
   use 'morhetz/gruvbox'
+  use 'EdenEast/nightfox.nvim'
 
   -- icons
   use 'ryanoasis/vim-devicons'
@@ -26,7 +27,7 @@ return require('packer').startup(function()
   use 'nvim-telescope/telescope.nvim'
 
   -- Lint LSP Comp.
-  use 'w0rp/ale'
+--  use 'w0rp/ale'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'

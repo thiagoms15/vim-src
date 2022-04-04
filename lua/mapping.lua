@@ -10,6 +10,6 @@ fn.nmap('<C-t>', ':FloatermToggle<CR>')
 fn.tmap('<C-t>', '<C-\\><C-n>:FloatermToggle<CR>')
 
 -- Harpoon
-fn.nmap('<Leader>fm', ':lua require("harpoon.mark").add_file()')
-fn.nmap('<Leader>ft', ':lua require("harpoon.mark").toggle_quick_menu()')
+fn.nmap('<Leader>fm', ':lua require("harpoon.mark").add_file()<cr>')
+fn.nmap('<Leader>ft', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
 
