@@ -59,4 +59,8 @@ vim.cmd('set clipboard+=unnamedplus')
 -- airline
 vim.cmd('let g:airline#extensions#tabline#enabled = 1')
 vim.cmd('let g:airline_powerline_fonts = 1')
+vim.cmd("let g:airline_theme = 'onedark'") 
 
+-- blame
+vim.cmd('let g:blamer_enabled = 1')
+vim.cmd('let g:blamer_show_in_visual_modes = 0')
