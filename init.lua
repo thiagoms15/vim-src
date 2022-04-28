@@ -1,5 +1,7 @@
 require('plugins')
 require('general')
 require('mapping')
-require('telescope')
 require('lsp')
+require('screen')
+require('treesitter')
+require('telescope')
