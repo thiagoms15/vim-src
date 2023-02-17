@@ -5,10 +5,18 @@ return require('packer').startup(function()
   --  use 'morhetz/gruvbox'
   use 'goolord/alpha-nvim'
   use 'EdenEast/nightfox.nvim'
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+        require("catppuccin").setup {
+            flavour = "macchiato" -- mocha, macchiato, frappe, latte
+        }
+        vim.api.nvim_command "colorscheme catppuccin"
+    end
+}
 
   -- icons
-  use 'preservim/nerdtree'
-  use 'ryanoasis/vim-devicons'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
 
@@ -26,6 +34,7 @@ return require('packer').startup(function()
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Lint LSP Comp.
   use 'neovim/nvim-lspconfig'
@@ -44,7 +53,7 @@ return require('packer').startup(function()
   -- use 'weirongxu/plantuml-previewer.vim'
 
   -- misc
-  use 'airblade/vim-rooter'
+--  use 'airblade/vim-rooter'
   use 'voldikss/vim-floaterm'
   --  use 'mg979/vim-visual-multi'
   end)

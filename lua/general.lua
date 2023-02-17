@@ -1,13 +1,11 @@
 local set = vim.opt
 HOME = os.getenv("HOME")
 
--- Enable syntax highlight
-vim.cmd('syntax enable')
-
 vim.g.mapleader=' '
 
 set.encoding = 'UTF-8'
 
+set.mouse      =''
 set.guicursor  = ''
 set.cursorline = true
 
@@ -51,8 +49,8 @@ set.colorcolumn = '80'
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 
 -- vim.cmd('colorscheme gruvbox')
-vim.cmd('colorscheme nordfox')
-set.background = 'dark'
+-- vim.cmd('colorscheme nordfox')
+--set.background = 'dark'
 
 set.inccommand = 'split'
 vim.cmd('set clipboard+=unnamedplus')

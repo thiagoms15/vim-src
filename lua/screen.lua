@@ -66,7 +66,7 @@ local doom1 = {
 
 
 -- Set header
-dashboard.section.header.val = doom1
+dashboard.section.header.val = danger
 
 -- Set menu
 dashboard.section.buttons.val = {
