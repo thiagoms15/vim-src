@@ -1,8 +1,19 @@
 # Vim config files
 
-## Setup environment
+## Migration to Lua script
+I decide to move to Neovim and because of that I migrated to use lua scripts so the directory `configs` is obsolete.
+Now I'm just using the lua directory, I keep the `configs` in case I need to use with vim.
 
-### 1 - Install pre-depedencies by `apt`
+## Setup environment (using lua-scripts)
+
+### 1 - Install pre-dependencies
+- Neovim
+- Clangd
+- Ripgrep
+
+## Setup environment (using vim-scripts) [deprecated]
+
+### 1 - Install pre-dependencies by `apt`
 
 ```
 sudo apt install neovim
@@ -12,7 +23,7 @@ curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-### 1.1 Optional
+### 1.1 Optional 
 
 ```
 sudo apt install bear
