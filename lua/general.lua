@@ -53,12 +53,12 @@ vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 --set.background = 'dark'
 
 set.inccommand = 'split'
-vim.cmd('set clipboard+=unnamedplus')
+--vim.cmd('set clipboard+=unnamedplus')
 
 -- airline
-vim.cmd('let g:airline#extensions#tabline#enabled = 1')
-vim.cmd('let g:airline_powerline_fonts = 1')
-vim.cmd("let g:airline_theme = 'onedark'")
+--vim.cmd('let g:airline#extensions#tabline#enabled = 1')
+--vim.cmd('let g:airline_powerline_fonts = 1')
+--vim.cmd("let g:airline_theme = 'onedark'")
 
 -- blame
 vim.cmd('let g:blamer_enabled = 1')

@@ -17,8 +17,13 @@ return require('packer').startup(function()
 }
 
   -- icons
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+--  use 'vim-airline/vim-airline'
+--  use 'vim-airline/vim-airline-themes'
+  use 'preservim/tagbar'
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- utils
   use 'Yggdroot/indentLine'
