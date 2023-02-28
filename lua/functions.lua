@@ -61,12 +61,12 @@ M.toggle_comment = function(is_multi_line)
     size = end_line - start_line
 
     local line_text       = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
-    local is_commented    = line_text[1]:match(comment_escaped) or false
+    local is_commented    = line_text[1]:match('^ *' .. comment_escaped) or false
     local new_buffer_line = {}
 
     if is_commented then
         for i=1,size do
-            new_buffer_line[i] = line_text[i]:gsub(comment_escaped, '')
+            new_buffer_line[i] = line_text[i]:gsub(comment_escaped, '', 1)
         end
     else
         for i=1,size do
