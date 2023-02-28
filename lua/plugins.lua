@@ -1,24 +1,15 @@
 return require('packer').startup(function()
+  -- package management
   use 'wbthomason/packer.nvim'
+  use "williamboman/mason.nvim"
 
   -- themes
-  --  use 'morhetz/gruvbox'
   use 'goolord/alpha-nvim'
-  use 'EdenEast/nightfox.nvim'
-  use {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-        require("catppuccin").setup {
-            flavour = "macchiato" -- mocha, macchiato, frappe, latte
-        }
-        vim.api.nvim_command "colorscheme catppuccin"
-    end
-}
+--  use 'morhetz/gruvbox'
+--  use 'EdenEast/nightfox.nvim'
+  use 'catppuccin/nvim'
 
   -- icons
---  use 'vim-airline/vim-airline'
---  use 'vim-airline/vim-airline-themes'
   use 'preservim/tagbar'
   use {
       'nvim-lualine/lualine.nvim',
