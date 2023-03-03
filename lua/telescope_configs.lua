@@ -14,7 +14,8 @@ telescope.setup{
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<C-h>"] = "which_key"
       }
-    }
+    },
+    prompt_prefix = '🔍 ',
   },
   pickers = {
 --    live_grep = {

@@ -20,7 +20,8 @@ fn.nmap('<leader>/', '', fn.toggle_comment)
 fn.vmap('<leader>/', '', function() fn.toggle_comment(true) end)
 
 -- show header file
-fn.nmap('<leader>h', ':lua require("functions").open_header()<CR>')
+fn.nmap('<leader>h', '', function() fn.open_header() end)
+fn.nmap('<leader>s', ':ClangdSwitchSourceHeader<CR>')
 
 -- Copy to plus register (quoteplus)
 fn.nmap('<leader>cp', '"+y<CR>')
@@ -30,3 +31,5 @@ fn.vmap('<leader>cp', '"+y<CR>')
 fn.nmap('<leader>pp', '"+p<CR>')
 fn.vmap('<leader>pp', '"+p<CR>')
 
+-- save
+fn.nmap('<leader>w', ':w<CR>')
