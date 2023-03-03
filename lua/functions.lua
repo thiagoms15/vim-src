@@ -2,24 +2,24 @@ local telescope = require('telescope.builtin')
 
 local M = {}
 
-M.map = function(mode, shortcut, command)
-    vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+M.map = function(mode, shortcut, command, callback)
+    vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true , callback = callback, })
 end
 
-M.nmap = function(shortcut, command)
-    M.map('n', shortcut, command)
+M.nmap = function(shortcut, command, callback)
+    M.map('n', shortcut, command, callback)
 end
 
-M.imap = function(shortcut, command)
-    M.map('i', shortcut, command)
+M.imap = function(shortcut, command, callback)
+    M.map('i', shortcut, command, callback)
 end
 
-M.tmap = function(shortcut, command)
-    M.map('t', shortcut, command)
+M.tmap = function(shortcut, command, callback)
+    M.map('t', shortcut, command, callback)
 end
 
-M.vmap = function(shortcut, command)
-    M.map('v', shortcut, command)
+M.vmap = function(shortcut, command, callback)
+    M.map('v', shortcut, command, callback)
 end
 
 -- define function to toggle comment for current line
@@ -52,8 +52,19 @@ M.toggle_comment = function(is_multi_line)
     local end_line   = 0
     local size       = 0
     if is_multi_line then
-        start_line = vim.fn.line("'<") - 1
-        end_line = vim.fn.line("'>")
+        _, start_line, cscol, _ = unpack(vim.fn.getpos('.'))
+        _, end_line, cecol, _   = unpack(vim.fn.getpos('v'))
+        -- swap vars if needed
+        if end_line < start_line then
+            start_line, end_line = end_line, start_line
+        end
+        start_line = start_line - 1
+        -- exit visual mode
+        vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes('<Esc>', true, false, true),
+            'n',
+            true
+        )
     else
         end_line = vim.fn.getpos(".")[2]
         start_line = end_line - 1
