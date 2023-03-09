@@ -89,11 +89,6 @@ M.toggle_comment = function(is_multi_line)
 end
 
 M.open_header = function()
-    local filetype        = vim.api.nvim_buf_get_option(0, "filetype")
-    if filetype ~= cpp and filetype ~= c then
-        print('Filetype [',filetype,'] is not supported.')
-        return
-    end
     local current_buffer = vim.api.nvim_get_current_buf()
     local buffer_name    = vim.api.nvim_buf_get_name(current_buffer)
     local header_file    = buffer_name:gsub('%.[^.]*$', '.h')
