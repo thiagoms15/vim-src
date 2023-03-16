@@ -33,3 +33,6 @@ fn.vmap('<leader>pp', '"+p<CR>')
 
 -- save
 fn.nmap('<leader>w', ':w<CR>')
+
+-- find with ripgrep
+fn.nmap('<leader>fr', '', fn.rg_find)

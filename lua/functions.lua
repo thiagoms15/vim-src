@@ -102,4 +102,34 @@ M.open_header = function()
     telescope.find_files(opts)
 end
 
+M.rg_find = function()
+    local word = vim.fn.input('🔍 Search for: ')
+
+    if not word or word == "" then
+        print("No search term specified")
+        return
+    end
+
+    local command = "rg --line-number --column --no-heading --color=never " .. word
+    local results = vim.fn.systemlist(command)
+
+    if #results == 0 then
+        print("No results found for '" .. word .. "'")
+        return
+    end
+
+    local lines = {}
+    for _, result in ipairs(results) do
+        local filename, line, col, match = result:match("^(.+):(%d+):(%d+):(.*)$")
+        table.insert(lines, filename .. ":" .. line .. ":" .. col .. ":" .. match)
+    end
+
+    vim.fn.setqflist({}, "r", {lines = lines})
+
+    vim.cmd("copen")
+
+    print("Found " .. #results .. " results for '" .. word .. "'")
+end
+
+
 return M
