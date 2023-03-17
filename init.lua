@@ -8,3 +8,6 @@ require('telescope_configs')
 require('lualine_configs')
 require("mason_configs")
 require("themes_configs")
+--require('cpp_cppcheck')
+require('tabnine_configs')
+

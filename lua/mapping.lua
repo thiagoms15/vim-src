@@ -24,8 +24,8 @@ fn.nmap('<leader>h', '', function() fn.open_header() end)
 fn.nmap('<leader>s', ':ClangdSwitchSourceHeader<CR>')
 
 -- Copy to plus register (quoteplus)
-fn.nmap('<leader>cp', '"+y<CR>')
-fn.vmap('<leader>cp', '"+y<CR>')
+fn.nmap('<leader>yp', '"+y<CR>')
+fn.vmap('<leader>yp', '"+y<CR>')
 
 -- Paste from plus register
 fn.nmap('<leader>pp', '"+p<CR>')
@@ -36,3 +36,7 @@ fn.nmap('<leader>w', ':w<CR>')
 
 -- find with ripgrep
 fn.nmap('<leader>fr', '', fn.rg_find)
+
+-- run cppcheck
+fn.nmap('<leader>cp', '', fn.cpp_check)
+

@@ -42,6 +42,8 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
+  -- AI
+  use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
   -- work
   --  use 'nathanalderson/yang.vim'
   -- use 'aklt/plantuml-syntax'
