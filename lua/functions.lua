@@ -110,7 +110,7 @@ M.rg_find = function()
         return
     end
 
-    local command = "rg --line-number --column --no-heading --color=never " .. word
+    local command = "rg --line-number --column --no-heading --color=never -e '" .. word .. "'"
     local results = vim.fn.systemlist(command)
 
     if #results == 0 then
@@ -121,7 +121,14 @@ M.rg_find = function()
     local lines = {}
     for _, result in ipairs(results) do
         local filename, line, col, match = result:match("^(.+):(%d+):(%d+):(.*)$")
-        table.insert(lines, filename .. ":" .. line .. ":" .. col .. ":" .. match)
+        if match then -- Add a check to make sure that the message variable is not nil
+            table.insert(lines, filename .. ":" .. line .. ":" .. col .. ":" .. match)
+        end
+    end
+
+    if #lines ~= #results then
+        print("Error to parse result for '" .. word .. "'")
+        return
     end
 
     vim.fn.setqflist({}, "r", {lines = lines})
@@ -200,7 +207,8 @@ end
 
 M.cpp_check = function()
   -- Run "git status" to get a list of modified files
-  local git_status = vim.fn.systemlist("git status --porcelain")
+  local git_status = vim.fn.systemlist("git status -s")
+--  local git_status = vim.fn.systemlist("git status --porcelain")
   local modified_files = {}
 
   -- Find all modified .h, .c, and .cpp files

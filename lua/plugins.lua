@@ -1,12 +1,9 @@
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- package management
   use 'wbthomason/packer.nvim'
   use "williamboman/mason.nvim"
 
   -- themes
-  use 'goolord/alpha-nvim'
---  use 'morhetz/gruvbox'
---  use 'EdenEast/nightfox.nvim'
   use 'catppuccin/nvim'
 
   -- icons
@@ -17,14 +14,13 @@ return require('packer').startup(function()
   }
 
   -- utils
-  use 'Yggdroot/indentLine'
   use 'APZelos/blamer.nvim'
   use 'kamykn/spelunker.vim'
   use 'ThePrimeagen/harpoon'
-  use 'norcalli/nvim-colorizer.lua'
   use 'dominikduda/vim_current_word'
   use 'ntpeters/vim-better-whitespace'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Telescope
   use 'nvim-lua/popup.nvim'
@@ -43,15 +39,23 @@ return require('packer').startup(function()
   use 'hrsh7th/vim-vsnip'
 
   -- AI
-  use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
+--  use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
+
+
+  -- misc
+  use 'voldikss/vim-floaterm'
+
+  -- obsolete
+  -- use 'morhetz/gruvbox'
+  -- use({ 'rose-pine/neovim', as = 'rose-pine' })
+  -- use 'EdenEast/nightfox.nvim'
+  -- use 'mg979/vim-visual-multi'
+  -- use 'airblade/vim-rooter'
+  -- use 'Yggdroot/indentLine'
   -- work
-  --  use 'nathanalderson/yang.vim'
+  -- use 'nathanalderson/yang.vim'
   -- use 'aklt/plantuml-syntax'
   -- use 'tyru/open-browser.vim'
   -- use 'weirongxu/plantuml-previewer.vim'
 
-  -- misc
---  use 'airblade/vim-rooter'
-  use 'voldikss/vim-floaterm'
-  --  use 'mg979/vim-visual-multi'
   end)

@@ -5,3 +5,4 @@ require("catppuccin").setup {
 vim.api.nvim_command "colorscheme catppuccin"
 -- vim.cmd('colorscheme gruvbox')
 -- vim.cmd('colorscheme nordfox')
+-- vim.cmd('colorscheme rose-pine')
