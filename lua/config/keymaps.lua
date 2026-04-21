@@ -1,23 +1,13 @@
-local fn = require('functions')
+local fn = require('config.functions')
 local builtin = require('telescope.builtin')
-local harpoon_ui = require('harpoon.ui')
-local harpoon_mark = require('harpoon.mark')
+
+vim.keymap.set('n', '<leader>e', ':Ex<cr>', { desc = 'Open [E]xplorer' })
 
 -- Telescope
 fn.nmap('<leader>ff', '', builtin.find_files)
 fn.nmap('<leader>fg', '', builtin.live_grep)
 fn.nmap('<leader>fb', '', builtin.buffers)
 fn.nmap('<leader>fh', '', builtin.help_tags)
-
--- Float terminal
-fn.nmap('<C-t>', ':FloatermToggle<CR>')
-fn.tmap('<C-t>', '<C-\\><C-n>:FloatermToggle<CR>')
-
--- Harpoon
-fn.nmap('<leader>fm', '', harpoon_mark.add_file)
-fn.nmap('<leader>ft', '', harpoon_ui.toggle_quick_menu)
-fn.nmap('<leader>j', '', harpoon_ui.nav_next)
-fn.nmap('<leader>k', '', harpoon_ui.nav_prev)
 
 -- toggle comment line
 fn.nmap('<leader>/', '', fn.toggle_comment)
@@ -43,4 +33,8 @@ fn.nmap('<leader>fr', '', fn.rg_find)
 
 -- run cppcheck
 fn.nmap('<leader>cc', '', fn.cpp_check)
+
+fn.nmap('<leader>tt', ':hi Normal guibg=NONE ctermbg=NONE<CR>')
+
+--fn.nmap('<leader>ai', ':CodeiumToggle<CR>')
 

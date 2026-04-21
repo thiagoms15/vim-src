@@ -32,6 +32,7 @@ M.toggle_comment = function(is_multi_line)
     local comment_map = {
         cpp = "//",
         cmake = "#",
+        conf = "#",
         lua = "--",
         rust = "//",
         python = "#",
@@ -40,6 +41,7 @@ M.toggle_comment = function(is_multi_line)
     local comment_escaped_map = {
         cpp = "//",
         cmake = "#",
+        conf = "#",
         lua = "%-%-",
         rust = "//",
         python = "#",
@@ -247,4 +249,99 @@ M.cpp_check = function()
   print("Found " .. #results .. " errors")
 end
 
+local function get_completion_from_ollama(prompt)
+  local payload = vim.fn.json_encode({
+        model = "llama3",
+        prompt = prompt .. "\n-- continue code",
+        stream = false,
+        temperature = 0.2,
+    })
+
+  local cmd = "echo " .. vim.fn.shellescape(payload) .. " | curl -s http://localhost:11434/api/generate -d @-"
+
+  print("Prompt:", prompt)
+  print("Command:", cmd)
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+
+  local ok, decoded = pcall(vim.fn.json_decode, result)
+  if ok and decoded and decoded.response then
+    return decoded.response
+  else
+    print("Failed to decode Ollama response")
+    print("JSON decode failed!")
+    print("Raw result was:", result)
+    return nil
+  end
+end
+
+M.CompleteWithOllama = function ()
+--  local start_line = math.max(vim.fn.line('.') - 10, 1) -- get last 10 lines of context
+--  local current_line = vim.fn.line('.')
+--  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, current_line, false)
+--  local prompt = table.concat(lines, "\n")
+--
+--  local response = get_completion_from_ollama(prompt)
+--  if response then
+--    vim.api.nvim_put({ response }, 'l', true, true)
+--  end
+
+
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local buf = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+  -- split prefix and suffix
+  local prefix_lines = {}
+  for i = 1, row do
+    table.insert(prefix_lines, lines[i])
+  end
+  prefix_lines[#prefix_lines] = prefix_lines[#prefix_lines]:sub(1, col)
+
+  local suffix_lines = {}
+  suffix_lines[1] = lines[row]:sub(col + 1)
+  for i = row + 1, #lines do
+    table.insert(suffix_lines, lines[i])
+  end
+
+  local prompt = "<PRE>\n" .. table.concat(prefix_lines, "\n") ..
+                 "\n<SUF>\n" .. table.concat(suffix_lines, "\n") ..
+                 "\n<MID>\n"
+
+  local payload = vim.fn.json_encode({
+    model = "codellama:13b", -- or "codellama:13b-instruct" if available
+    prompt = prompt,
+    temperature = 0.2,
+    top_p = 0.95,
+    stream = false,
+  })
+
+  -- write to file to avoid shell escaping issues
+  local tmpfile = "/tmp/ollama_codellama.json"
+  local f = io.open(tmpfile, "w")
+  f:write(payload)
+  f:close()
+
+  -- execute curl and read output
+--  local cmd = "echo " .. vim.fn.shellescape(payload) .. " | curl -s http://localhost:11434/api/generate -d @-"
+  local cmd = "curl -s http://localhost:11434/api/generate --data-binary @" .. tmpfile
+  print("Prompt:", prompt)
+  print("Command:", cmd)
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+
+  local ok, decoded = pcall(vim.fn.json_decode, result)
+  if not ok or not decoded or not decoded.response then
+    print("Failed to decode Ollama response")
+    return
+  end
+
+  -- insert generated code at cursor
+  local response_lines = vim.split(decoded.response, "\n", { plain = true })
+  vim.api.nvim_buf_set_lines(buf, row, row, false, response_lines)
+end
+
 return M
+

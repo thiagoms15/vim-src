@@ -16,6 +16,7 @@ telescope.setup{
       }
     },
     prompt_prefix = '🔍 ',
+    file_ignore_patterns = { "compile%_commands.json" }
   },
   pickers = {
 --    live_grep = {
@@ -40,3 +41,4 @@ telescope.setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+

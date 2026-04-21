@@ -51,8 +51,15 @@ vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 --set.background = 'dark'
 
 set.inccommand = 'split'
-vim.cmd('set clipboard+=unnamedplus')
+--vim.cmd('set clipboard+=unnamedplus')
 
 -- blame
 vim.cmd('let g:blamer_enabled = 1')
 vim.cmd('let g:blamer_show_in_visual_modes = 0')
+vim.cmd("let g:blamer_template = '<committer>, <committer-time> • [<commit-short>] <summary>'")
+
+-- spell
+--vim.cmd('let g:spelunker_target_min_char_len = 4')
+--vim.cmd('let g:spelunker_check_type = 1')
+
+vim.opt.winborder = "solid"
