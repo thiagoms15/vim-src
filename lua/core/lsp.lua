@@ -1,5 +1,6 @@
 vim.lsp.enable({
     "clangd",
+    "cmake",
     "gopls",
     "kotlin_language_server",
     "lua_ls",
