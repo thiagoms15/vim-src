@@ -249,6 +249,43 @@ M.cpp_check = function()
   print("Found " .. #results .. " errors")
 end
 
+M.cpp_check_file = function()
+  local buf = vim.api.nvim_get_current_buf()
+  local filepath = vim.api.nvim_buf_get_name(buf)
+
+  if filepath == "" then
+    print("No file path found for current buffer")
+    return
+  end
+
+  local ext = filepath:match("%.%w+$")
+  if ext ~= ".cpp" and ext ~= ".c" and ext ~= ".h" and ext ~= ".hpp" and ext ~= ".cc" then
+    print("Not a C/C++ file: " .. ext)
+    return
+  end
+
+  print("Running cppcheck on " .. filepath)
+  local command = "cppcheck --enable=all --language=c++ --suppress=missingIncludeSystem " .. filepath
+  local results = vim.fn.systemlist(command)
+
+  if #results == 0 then
+    print("No errors found")
+    return
+  end
+
+  local lines = {}
+  for _, result in ipairs(results) do
+      local filename, line, col, message = result:match("^(.+):(%d+):(%d+):(.+)$")
+      if message then
+          table.insert(lines, filename .. ":" .. line .. ":" .. col .. ":" .. message)
+      end
+  end
+
+  vim.fn.setqflist({}, "r", {lines = lines})
+  vim.cmd("copen")
+  print("Found " .. #results .. " errors")
+end
+
 local function get_completion_from_ollama(prompt)
   local payload = vim.fn.json_encode({
         model = "llama3",

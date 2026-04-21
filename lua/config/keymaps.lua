@@ -33,6 +33,7 @@ fn.nmap('<leader>fr', '', fn.rg_find)
 
 -- run cppcheck
 fn.nmap('<leader>cc', '', fn.cpp_check)
+fn.nmap('<leader>cf', '', fn.cpp_check_file)
 
 fn.nmap('<leader>tt', ':hi Normal guibg=NONE ctermbg=NONE<CR>')
 
