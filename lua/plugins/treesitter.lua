@@ -14,7 +14,6 @@ return {
             modules = { },
             highlight = {
                 enable = true,
-                disable = { "markdown" },
                 additional_vim_regex_highlighting = false,
             },
             indent = { enable = true },
@@ -122,10 +121,7 @@ return {
             -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
             separator = nil,
             zindex = 20, -- The Z-index of the context window
-            on_attach = function(bufnr)
-                -- Markdown injections can trip treesitter-context while parsing nested langtrees.
-                return vim.bo[bufnr].filetype ~= "markdown"
-            end,
+            on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
         }
     end,
 }
